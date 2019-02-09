@@ -74,6 +74,7 @@ input {
 }
 #login .login-div .left .login-form .logo {
   text-decoration: none;
+  color: #2A2A72;
 }
 #login .login-div .left .login-form .logo h4 {
   text-align: center;
@@ -175,6 +176,7 @@ input {
 }
 #signup .signup-div .right .signup-form .logo {
   text-decoration: none;
+  color: #2A2A72;
 }
 #signup .signup-div .right .signup-form .logo h4 {
   text-align: center;
