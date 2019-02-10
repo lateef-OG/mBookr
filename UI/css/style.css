@@ -43,6 +43,46 @@ input {
   padding-left: 10px;
   padding-right: 10px;
 }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal .modal-main {
+  position: fixed;
+  background: white;
+  width: 40%;
+  height: auto;
+  border-radius: 3px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(63, 63, 68, 0.15), 0px 0px 0px rgba(63, 63, 68, 0.05);
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .modal .modal-main {
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 529px) {
+  .modal .modal-main {
+    width: 90%;
+  }
+}
+.modal .modal-main .close-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  color: #009FFD;
+  font-size: 24px;
+}
 #login {
   width: 100%;
   min-height: 100vh;
@@ -626,14 +666,17 @@ input {
   border-bottom: 1px solid #eaeaea;
 }
 #caterer-profile .profile-main .right .order-content .order div {
+  width: 16%;
+}
+#caterer-profile .profile-main .right .order-content .order div:nth-child(5) {
   width: 20%;
 }
 #caterer-profile .profile-main .right .order-content .order div:last-child {
   display: flex;
-  align-items: center;
-  height: auto;
+  justify-content: space-between;
 }
 #caterer-profile .profile-main .right .order-content .order div:last-child button {
+  width: auto;
   margin-bottom: 0;
 }
 #caterer-profile .profile-main .right .order-content .order:last-child {
@@ -742,10 +785,14 @@ input {
   }
   #caterer-profile .profile-main .right .order-content .order div {
     width: 50%;
+    margin-bottom: 5px;
+  }
+  #caterer-profile .profile-main .right .order-content .order div:nth-child(5) {
+    width: 100%;
   }
   #caterer-profile .profile-main .right .order-content .order div:last-child {
     width: 100%;
-    margin-top: 5px;
+    align-items: center;
   }
   #caterer-profile .profile-main .right .order-content .meal {
     justify-content: space-between;
@@ -753,4 +800,123 @@ input {
   #caterer-profile .profile-main .right .order-content .meal div {
     width: 30%;
   }
+  #caterer-profile .profile-main .right .order-content .meal div:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  #caterer-profile .profile-main .right .order-content .meal div:last-child button {
+    margin-bottom: 0;
+  }
+}
+.order-detail {
+  padding: 30px 50px;
+  max-height: 90vh;
+  overflow: scroll;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .order-detail {
+    padding: 30px 20px;
+  }
+}
+@media only screen and (max-width: 529px) {
+  .order-detail {
+    padding: 30px 20px;
+  }
+}
+.order-detail h4 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.order-detail .detail-item {
+  display: flex;
+  padding: 5px;
+  border-bottom: 1px dashed #eaeaea;
+}
+.order-detail .detail-item h5 {
+  font-size: 16px;
+  width: 25%;
+}
+.order-detail .detail-item p {
+  font-size: 16px;
+  width: 75%;
+}
+.order-detail .detail-item .meals {
+  width: 75%;
+}
+.order-detail .detail-item .meals div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.order-detail .detail-item .meals div p {
+  width: auto;
+}
+.order-detail .detail-item .meals div p:first-child {
+  max-width: 75%;
+}
+.order-detail .detail-item:last-child {
+  border-bottom: 0;
+}
+.add-edit-meal {
+  padding: 30px 50px;
+  max-height: 90vh;
+  overflow: scroll;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .add-edit-meal {
+    padding: 30px 20px;
+  }
+}
+@media only screen and (max-width: 529px) {
+  .add-edit-meal {
+    padding: 30px 20px;
+  }
+}
+.add-edit-meal h4 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.add-edit-meal label {
+  background: #009FFD;
+  color: #ffffff;
+  font-size: 14px;
+  border-radius: 3px;
+  font-weight: bold;
+  border: 1px solid #009FFD;
+  cursor: pointer;
+  padding: 10px 0;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-edit-meal label i {
+  margin-right: 15px;
+}
+.add-edit-meal #image {
+  width: 150px;
+  height: 150px;
+  border-radius: 3px;
+  border: 1px solid #009FFD;
+  margin-bottom: 2px;
+  padding: 1px;
+}
+.add-edit-meal #image img {
+  height: 100%;
+  width: 100%;
+}
+.add-edit-meal .image-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.add-edit-meal .entry p {
+  margin-bottom: 5px;
 }
