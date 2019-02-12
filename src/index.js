@@ -1,3 +1,3 @@
 /* eslint linebreak-style: ["error", "windows"] */
-const greeting = 'Hello World';
+const greeting = 'Installed babel';
 console.log(greeting);
