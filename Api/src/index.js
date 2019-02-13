@@ -1,10 +1,15 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import MealsRoute from './routes/meals';
 
 const app = express();
 
 const PORT = process.env.PORT || 4000;
+
+app.use(bodyParser.json());
+
 app.use('/api/v1/meals', MealsRoute);
+
 app.use((req, res) => {
   const error = new Error('Not found');
   res.status(404);
@@ -23,6 +28,7 @@ app.use((error, req, res) => {
     },
   });
 });
+
 app.listen(PORT);
 
 export default app;
