@@ -1,12 +1,18 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import MealsRoute from './routes/meals';
+import MealsRoute from './routes/meal.route';
 
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
 app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Welcome to mBookr API',
+  });
+});
 
 app.use('/api/v1/meals', MealsRoute);
 
