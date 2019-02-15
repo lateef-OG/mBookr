@@ -64,3 +64,31 @@ describe('Meals', () => {
     });
   });
 });
+
+describe('Menu', () => {
+  describe('GET /menu', () => {
+    it('should get menu for the day', (done) => {
+      chai.request(app)
+        .get('/api/v1/menu')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+  describe('POST /menu', () => {
+    it('should get add a meal option', (done) => {
+      chai.request(app)
+        .post('/api/v1/menu')
+        .field('date', 'test date')
+        .field('menu', 'meal')
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.data.should.be.a('object');
+          assert.equal(res.body.message, 'Menu created successfully');
+          done();
+        });
+    });
+  });
+});
