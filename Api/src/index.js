@@ -4,8 +4,6 @@ import MealsRoute from './routes/meal.route';
 
 const app = express();
 
-const PORT = process.env.PORT || 4000;
-
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
@@ -34,7 +32,5 @@ app.use((error, req, res) => {
     },
   });
 });
-
-app.listen(PORT);
 
 export default app;

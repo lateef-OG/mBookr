@@ -3,10 +3,10 @@ import MealService from '../services/meals.service';
 const MealController = {
   fetchAllMeals(req, res) {
     const allMeals = MealService.getAll();
-    return res.json({
+    return res.status(200).json({
       status: 'success',
       data: allMeals,
-    }).status(200);
+    });
   },
   addMeal(req, res) {
     /*
@@ -19,34 +19,10 @@ const MealController = {
     */
     const meal = req.body;
     const createdMeal = MealService.addMeal(meal);
-    return res.json({
+    return res.status(201).json({
       status: 'success',
       data: createdMeal,
-    }).status(201);
-  },
-  getMeal(req, res) {
-    const { id } = req.params;
-    const meal = MealService.getMeal(id);
-    let response = {};
-    let status = 0;
-    if (Object.keys(meal).length > 0) {
-      response = {
-        ...response,
-        status: 'success',
-        data: meal,
-      };
-      status = 200;
-    } else {
-      response = {
-        ...response,
-        status: 'error',
-        message: `meal with id: ${id} not found`,
-      };
-      status = 404;
-    }
-    return res.json({
-      response,
-    }).status(status);
+    });
   },
   editMeal(req, res) {
     /*
@@ -78,9 +54,9 @@ const MealController = {
       };
       status = 404;
     }
-    return res.json({
+    return res.status(status).json({
       response,
-    }).status(status);
+    });
   },
   deleteMeal(req, res) {
     const { id } = req.params;
@@ -102,9 +78,9 @@ const MealController = {
       };
       status = 404;
     }
-    return res.json({
+    return res.status(status).json({
       response,
-    }).status(status);
+    });
   },
 };
 
