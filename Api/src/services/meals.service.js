@@ -27,12 +27,6 @@ const MealService = {
     return newMeal;
   },
 
-  getMeal(id) {
-    const parsedId = parseInt(id, Number);
-    const mealOption = MealData.meals.find(meal => meal.id === parsedId);
-    return mealOption || {};
-  },
-
   editMeal(id, mealEntry) {
     const parsedId = parseInt(id, Number);
     const newMealList = MealData.meals.filter(meal => meal.id !== parsedId);

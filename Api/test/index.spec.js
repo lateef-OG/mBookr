@@ -1,34 +1,66 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
-import chaiHTTP from 'chai-http';
+import chaiHttp from 'chai-http';
 import app from '../src/index';
-import Meals from '../src/data/meal-data';
+import MealData from '../src/data/meal-data';
 
-const { assert, expect, use, should } = chai;
+const { assert } = chai;
 
-use(chaiHTTP);
-
-const apiBase = '/api/v1';
-
-const getMeals = () => {
-  return Meals;
-};
-
-const entry = {
-  name: 'test name',
-  price: 150,
-  image: 'image.png',
-};
-
-describe('Meal Endpoints', () => {
-  it(`GET ${apiBase}/meals/ - Fetch All Meals`, (done) => {
-    chai
-      .request(app)
-      .get('/api/v1/meals')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.data.should.be.a('array');
-        done();
-      });
+chai.use(chaiHttp);
+chai.should();
+describe('Meals', () => {
+  describe('GET /meals', () => {
+    it('should get all meal options', (done) => {
+      chai.request(app)
+        .get('/api/v1/meals')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          done();
+        });
+    });
+  });
+  describe('POST /meals', () => {
+    it('should get add a meal option', (done) => {
+      chai.request(app)
+        .post('/api/v1/meals')
+        .field('name', 'Test Meal')
+        .field('price', '500')
+        .attach('image', '../UI/img/food-img.jpg', 'test.png')
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.data.should.be.a('object');
+          done();
+        });
+    });
+  });
+  describe('PUT /meals', () => {
+    it('should edit a meal option', (done) => {
+      const mealId = MealData.meals[0].id;
+      chai.request(app)
+        .put(`/api/v1/meals/${mealId}`)
+        .field('name', 'Test Meal')
+        .field('price', '500')
+        .attach('image', '../UI/img/food-img.jpg', 'test.png')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.equal(res.body.response.status, 'success');
+          assert.equal(res.body.response.message, `Meal with id: ${mealId} edited successfully.`);
+          done();
+        });
+    });
+  });
+  describe('DELETE /meals', () => {
+    it('should delete a meal option', (done) => {
+      const mealId = MealData.meals[0].id;
+      chai.request(app)
+        .delete(`/api/v1/meals/${mealId}`)
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.equal(res.body.response.status, 'success');
+          assert.equal(res.body.response.message, `Meal with id: ${mealId} deleted successfully.`);
+          done();
+        });
+    });
   });
 });
