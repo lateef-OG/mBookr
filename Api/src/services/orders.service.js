@@ -33,7 +33,6 @@ const OrderService = {
     const parsedId = parseInt(id, Number);
     const newOrdersList = OrderData.orders.filter(order => order.id !== parsedId);
     const idExists = (OrderData.orders.length !== newOrdersList.length);
-    console.log(parsedId);
     const editedOrder = {
       id: parsedId,
       customer_name: orderEntry.customer_name,
