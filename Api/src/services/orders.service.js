@@ -25,7 +25,7 @@ const OrderService = {
     const lastId = OrderData.orders[ordersLength - 1].id;
     const id = lastId + 1;
     const newOrder = { id, ...order };
-    OrderData.meals = [...OrderData.meals, newOrder];
+    OrderData.orders = [...OrderData.orders, newOrder];
     return newOrder;
   },
 
@@ -33,6 +33,7 @@ const OrderService = {
     const parsedId = parseInt(id, Number);
     const newOrdersList = OrderData.orders.filter(order => order.id !== parsedId);
     const idExists = (OrderData.orders.length !== newOrdersList.length);
+    console.log(parsedId);
     const editedOrder = {
       id: parsedId,
       customer_name: orderEntry.customer_name,
