@@ -1,7 +1,7 @@
 import OrderService from '../services/orders.service';
 
-const MealController = {
-  fetchAllMeals(req, res) {
+const OrderController = {
+  getOrders(req, res) {
     const orders = OrderService.getOrders();
     return res.status(200).json({
       status: 'success',
@@ -40,6 +40,7 @@ const MealController = {
       }
     */
     const { id } = req.params;
+    console.log('hmmmmmm');
     const entry = req.body;
     const result = OrderService.editOrder(id, entry);
     let response = {};
@@ -66,4 +67,4 @@ const MealController = {
   },
 };
 
-export default MealController;
+export default OrderController;
