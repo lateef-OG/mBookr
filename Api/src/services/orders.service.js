@@ -25,7 +25,7 @@ const OrderService = {
     const lastId = OrderData.orders[ordersLength - 1].id;
     const id = lastId + 1;
     const newOrder = { id, ...order };
-    OrderData.meals = [...OrderData.meals, newOrder];
+    OrderData.orders = [...OrderData.orders, newOrder];
     return newOrder;
   },
 
@@ -42,7 +42,7 @@ const OrderService = {
       phone_no: orderEntry.phone_no,
       total_cost: orderEntry.total_cost,
     };
-    OrderData.meals = [...newOrdersList, editedOrder];
+    OrderData.orders = [...newOrdersList, editedOrder];
     return {
       editedOrder,
       idExists,
