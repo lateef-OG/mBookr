@@ -40,7 +40,6 @@ const OrderController = {
       }
     */
     const { id } = req.params;
-    console.log('hmmmmmm');
     const entry = req.body;
     const result = OrderService.editOrder(id, entry);
     let response = {};
