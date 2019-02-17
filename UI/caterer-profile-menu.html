@@ -54,7 +54,7 @@
                             <h3>Menu for the day</h3>
                         </div>
                         <div>
-                            <button><i class="fa fa-pen"></i> Edit Menu</button>
+                            <button class="btn"><i class="fa fa-plus"></i> Create Menu</button>
                         </div>
                     </div>
                     <div class="menu-content">
@@ -142,6 +142,84 @@
                 </div>
             </div>
         </section>
+        <section id="create-menu">
+            <div class="modal">
+                <div class="modal-main">
+                    <i class="close-icon fa fa-times-circle"></i>
+                    <div class="meal-list">
+                        <h4>Select Meals</h4>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <div class="meal">
+                            <input type="checkbox" class="checkbox">
+                            <img src="https://bit.ly/2Bss2hc" alt="">
+                            <p class="first">sample meal name</p>
+                            <p>N300</p>
+                        </div>
+                        <button>Create Menu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    <script>
+        let modal = document.getElementById('create-menu');
+
+        let modalContent = document.getElementsByClassName("modal")[0];
+
+        let btns = document.getElementsByClassName("btn");
+
+        let span = document.getElementsByClassName("close-icon")[0];
+
+        for (let btn of btns) {
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modalContent) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

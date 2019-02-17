@@ -811,7 +811,8 @@ input {
   }
 }
 #caterer-profile #order,
-#caterer-profile #add-edit {
+#caterer-profile #add-edit,
+#caterer-profile #create-menu {
   display: none;
 }
 .order-detail {
@@ -923,6 +924,57 @@ input {
 .add-edit-meal .entry p {
   margin-bottom: 5px;
 }
+.meal-list {
+  padding: 30px 50px;
+  max-height: 90vh;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  .meal-list {
+    padding: 30px 20px;
+  }
+}
+@media only screen and (max-width: 529px) {
+  .meal-list {
+    padding: 30px 20px;
+  }
+}
+.meal-list h4 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.meal-list .meal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+}
+.meal-list .meal .checkbox {
+  height: initial;
+  width: initial;
+  margin: 0;
+}
+.meal-list .meal img {
+  height: 40px;
+  width: 40px;
+  border-radius: 3px;
+}
+.meal-list .meal h5 {
+  font-size: 16px;
+}
+.meal-list .meal p {
+  font-size: 16px;
+}
+.meal-list .meal .first {
+  width: 60%;
+}
+.meal-list button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 0;
+  width: 150px;
+}
 #cart {
   width: 100%;
 }
@@ -1004,7 +1056,124 @@ input {
 }
 #cart .cart-div .checkout-section div h3 {
   margin-bottom: 15px;
+  text-align: right;
 }
 #cart .cart-div .checkout-section div button {
   width: 156px;
+}
+#confirm {
+  width: 100%;
+}
+#confirm .title h3 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 40px;
+  color: #232528;
+}
+#confirm .confirm-div {
+  padding: 40px 10%;
+  display: flex;
+  justify-content: space-between;
+}
+#confirm .confirm-div .left {
+  width: 29%;
+  height: 100%;
+  border-radius: 3px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(63, 63, 68, 0.15), 0px 0px 0px rgba(63, 63, 68, 0.05);
+  padding: 15px 25px;
+}
+#confirm .confirm-div .left h3 {
+  margin-bottom: 15px;
+}
+#confirm .confirm-div .left p {
+  margin-bottom: 10px;
+}
+#confirm .confirm-div .right {
+  width: 70%;
+  border-radius: 3px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 3px rgba(63, 63, 68, 0.15), 0px 0px 0px rgba(63, 63, 68, 0.05);
+  padding: 15px 25px;
+}
+#confirm .confirm-div .right h3 {
+  margin-bottom: 15px;
+}
+#confirm .confirm-div .right .order-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding: 10px 0;
+}
+#confirm .confirm-div .right .order-item div {
+  width: 16.67%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+#confirm .confirm-div .right .order-item div i {
+  color: #BC3E06;
+}
+#confirm .confirm-div .right .order-item .image img {
+  height: 60px;
+  width: 60px;
+  border-radius: 3px;
+}
+#confirm .confirm-div .right .order-item .quantity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#confirm .confirm-div .right .order-item .quantity button {
+  width: auto;
+  margin-bottom: 0;
+  padding: 0 15px;
+}
+#confirm .confirm-div .right .order-item .quantity h4 {
+  margin: 0 15px;
+}
+@media only screen and (max-width: 529px) {
+  #confirm .confirm-div .right .order-item {
+    flex-wrap: wrap;
+  }
+  #confirm .confirm-div .right .order-item div {
+    width: 50%;
+    margin-bottom: 15px;
+  }
+}
+#confirm .confirm-div .right .checkout-section {
+  display: flex;
+  justify-content: flex-end;
+}
+#confirm .confirm-div .right .checkout-section div {
+  padding-top: 20px;
+}
+#confirm .confirm-div .right .checkout-section div h3 {
+  margin-bottom: 15px;
+  text-align: right;
+}
+#confirm .confirm-div .right .checkout-section div button {
+  width: 156px;
+}
+@media only screen and (min-width: 530px) and (max-width: 949px) {
+  #confirm .confirm-div {
+    padding: 40px 5%;
+    flex-wrap: wrap;
+  }
+  #confirm .confirm-div .left,
+  #confirm .confirm-div .right {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}
+@media only screen and (max-width: 529px) {
+  #confirm .confirm-div {
+    padding: 60px 5%;
+    flex-wrap: wrap;
+  }
+  #confirm .confirm-div .left,
+  #confirm .confirm-div .right {
+    width: 100%;
+    margin-bottom: 15px;
+  }
 }
