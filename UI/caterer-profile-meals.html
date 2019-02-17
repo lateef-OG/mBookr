@@ -54,9 +54,7 @@
                             <h3>All Meals</h3>
                         </div>
                         <div>
-                            <a href="add-edit-meal.html">
-                                <button><i class="fa fa-plus"></i> Add Meal</button>
-                            </a>
+                            <button class="btn"><i class="fa fa-plus"></i> Add Meal</button>
                         </div>
                     </div>
                     <div class="order-content">
@@ -74,9 +72,7 @@
                                     <p>N800</p>
                                 </div>
                                 <div>
-                                    <a href="add-edit-meal.html">
-                                        <button>Edit</button>
-                                    </a>
+                                    <button class="btn">Edit</button>
                                     <i class="fa fa-trash"></i>
                                 </div>
                             </div>
@@ -93,9 +89,7 @@
                                     <p>N800</p>
                                 </div>
                                 <div>
-                                    <a href="add-edit-meal.html">
-                                        <button>Edit</button>
-                                    </a>
+                                    <button class="btn">Edit</button>
                                     <i class="fa fa-trash"></i>
                                 </div>
                             </div>
@@ -112,9 +106,7 @@
                                     <p>N800</p>
                                 </div>
                                 <div>
-                                    <a href="add-edit-meal.html">
-                                        <button>Edit</button>
-                                    </a>
+                                    <button class="btn">Edit</button>
                                     <i class="fa fa-trash"></i>
                                 </div>
                             </div>
@@ -131,9 +123,7 @@
                                     <p>N800</p>
                                 </div>
                                 <div>
-                                    <a href="add-edit-meal.html">
-                                        <button>Edit</button>
-                                    </a>
+                                    <button class="btn">Edit</button>
                                     <i class="fa fa-trash"></i>
                                 </div>
                             </div>
@@ -142,6 +132,72 @@
                 </div>
             </div>
         </section>
+        <section id="add-edit">
+            <div class="modal">
+                <div class="modal-main">
+                    <i class="close-icon fa fa-times-circle"></i>
+                    <div class="add-edit-meal">
+                        <h4>Add Meal</h4>
+                        <div id="image">
+                            <img src="img/plus-icon.svg" alt="">
+                        </div>
+                        <label for="file" id="label"><i class="fa fa-upload"></i><span>Upload image</span></label>
+                        <input type="file" name="file" id="file" accept="image/*" class="image-input">
+                        <br>
+                        <div class="entry">
+                            <div>
+                                <p>Meal Name</p>
+                                <input type="text">
+                            </div>
+                            <div>
+                                <p>Price(&#8358;)</p>
+                                <input type="Number">
+                            </div>
+                            <button>Save Meal</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+    <script>
+        let modal = document.getElementById('add-edit');
+
+        let modalContent = document.getElementsByClassName("modal")[0];
+
+        let btns = document.getElementsByClassName("btn");
+
+        let span = document.getElementsByClassName("close-icon")[0];
+
+        for (let btn of btns){
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modalContent) {
+                modal.style.display = "none";
+            }
+        }
+
+        let input = document.getElementById('file');
+        let label = document.getElementById('label');
+        let image = document.getElementById('image')
+        labelVal = label.innerHTML;
+        input.addEventListener('change', function (e) {
+            let fileName = '';
+            fileName = e.target.value.split('\\').pop();
+            if (fileName) {
+                label.querySelector('span').innerHTML = fileName;
+                image.querySelector('img').src = URL.createObjectURL(e.target.files[0]);
+            } else
+                label.innerHTML = labelVal;
+        });
+    </script>
 </body>
 </html>
