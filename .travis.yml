@@ -3,6 +3,8 @@ node_js:
   - "stable"
 before_script: 
   - cd Api
+  - npm install
+  - chmod 0755 node_modules/.bin/mocha
 cache:
   directories:
     - "Api/node_modules"
