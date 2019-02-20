@@ -5,4 +5,4 @@ before_script:
   - cd Api
 cache:
   directories:
-    - "node_modules"
+    - "Api/node_modules"
