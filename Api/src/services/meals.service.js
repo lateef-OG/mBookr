@@ -37,7 +37,9 @@ const MealService = {
       price: mealEntry.price,
       image: mealEntry.image,
     };
-    MealData.meals = [...newMealList, editedMeal];
+    if (idExists) {
+      MealData.meals = [editedMeal, ...newMealList];
+    }
     return {
       editedMeal,
       idExists,

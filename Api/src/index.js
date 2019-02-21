@@ -18,19 +18,15 @@ app.use('/api/v1/meals', MealsRoute);
 app.use('/api/v1/menu', MenuRoute);
 app.use('/api/v1/orders', OrderRoute);
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   const error = new Error('Not found');
-  res.status(404);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
+  error.status = 404;
+  next(error);
 });
 
-app.use((error, req, res) => {
-  res.status(error.status || 500);
-  res.json({
+app.use((error, req, res, next) => {
+  // res.status(error.status || 500);
+  res.status(error.status || 500).json({
     error: {
       message: error.message,
     },
