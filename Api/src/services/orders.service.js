@@ -42,7 +42,9 @@ const OrderService = {
       phone_no: orderEntry.phone_no,
       total_cost: orderEntry.total_cost,
     };
-    OrderData.orders = [...newOrdersList, editedOrder];
+    if (idExists) {
+      OrderData.orders = [editedOrder, ...newOrdersList];
+    }
     return {
       editedOrder,
       idExists,

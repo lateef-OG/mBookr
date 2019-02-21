@@ -82,6 +82,9 @@ const MealController = {
       response,
     });
   },
+  serverError() {
+    throw new Error('Something went wrong!');
+  },
 };
 
 export default MealController;
