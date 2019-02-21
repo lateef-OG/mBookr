@@ -4,7 +4,6 @@ import chaiHttp from 'chai-http';
 import app from '../src/index';
 import MealData from '../src/data/meal-data';
 import OrderData from '../src/data/order-data';
-import orderData from '../src/data/order-data';
 
 const { assert } = chai;
 
