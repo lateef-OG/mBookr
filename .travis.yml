@@ -1,6 +1,9 @@
 language: node_js
 node_js: 
   - "stable"
+env:
+  global:
+  - CODECLIMATE_REPO_TOKEN=4684dd5660d2b13c74f802979e033f116690f40884efc82225bea35e7611d91c
 before_script: 
   - cd Api
   - npm install
