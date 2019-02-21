@@ -2,7 +2,7 @@
 A meal booking web application that allows a user make meal orders. It also allows the food vendor manage meals, menus, orders and view revenue for the day.
 
 [![Build Status](https://travis-ci.org/lateef-OG/mBookr.svg?branch=feature-integrate-travisCI)](https://travis-ci.org/lateef-OG/mBookr)
-[![Coverage Status](https://coveralls.io/repos/github/lateef-OG/mBookr/badge.svg?branch=master)](https://coveralls.io/github/lateef-OG/mBookr?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/lateef-OG/mBookr/badge.svg?branch=feature-integrate-coveralls)](https://coveralls.io/github/lateef-OG/mBookr?branch=feature-integrate-coveralls)
 
 **UI template:** (https://lateef-og.github.io/mBookr/UI/)
 
