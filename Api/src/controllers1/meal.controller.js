@@ -1,4 +1,4 @@
-import MealService from '../services/meals.service';
+import MealService from '../services1/meals.service';
 
 const MealController = {
   fetchAllMeals(req, res) {
