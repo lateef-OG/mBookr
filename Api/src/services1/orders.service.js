@@ -1,5 +1,5 @@
 import OrderData from '../data/order-data';
-import Order from '../models/orders.model';
+import Order from '../models1/orders.model';
 
 const OrderService = {
   fetchOrders() {

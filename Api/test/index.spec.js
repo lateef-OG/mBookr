@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../src/index';
+import app from '../src/index1';
 import MealData from '../src/data/meal-data';
 import OrderData from '../src/data/order-data';
 

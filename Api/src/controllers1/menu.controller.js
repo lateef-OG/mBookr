@@ -1,4 +1,4 @@
-import MenuService from '../services/menu.service';
+import MenuService from '../services1/menu.service';
 
 const MenuController = {
   getMenu(req, res) {
