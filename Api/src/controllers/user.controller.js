@@ -88,6 +88,7 @@ const UserController = {
             const token = jwt.sign({
               email: user.dataValues.email,
               user_id: user.dataValues.id,
+              role_id: user.dataValues.role_id,
             }, 'secret', {
               expiresIn: '1h',
             });
