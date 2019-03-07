@@ -11,7 +11,7 @@ before_script:
   - npm install
   - chmod 0755 node_modules/.bin/mocha
   - psql -c 'create database mbookr;' -U postgres
-  - psql -c "CREATE postgres foo WITH PASSWORD 'databasepassword';" -U postgres
+  - psql -c "CREATE postgres WITH PASSWORD 'databasepassword';" -U postgres
 script:  
   - npm run test:travis
 after_script:
