@@ -12,7 +12,7 @@ const MenuController = {
       .findById(req.body.meal_id)
       .then((meal) => {
         if (!meal) {
-          return res.status(400).send({
+          return res.status(404).send({
             message: 'Meal Not Found',
           });
         }

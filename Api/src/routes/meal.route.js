@@ -20,4 +20,6 @@ router.get('/', CheckAuth.caterer, mealController.fetchMeals);
 router.put('/:meal_id', CheckAuth.caterer, upload.single('image'), mealController.editMeal);
 router.delete('/:meal_id', CheckAuth.caterer, mealController.deleteMeal);
 
+router.get('/error', mealController.serverError);
+
 export default router;

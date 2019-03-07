@@ -83,6 +83,9 @@ const MealController = {
       })
       .catch(error => res.status(400).send(error));
   },
+  serverError() {
+    throw new Error('Something went wrong!');
+  },
 };
 
 export default MealController;
