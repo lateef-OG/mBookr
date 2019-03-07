@@ -11,7 +11,6 @@ before_script:
   - npm install
   - chmod 0755 node_modules/.bin/mocha
   - psql -c 'create database mbookr;' -U postgres
-  - psql -c "CREATE USER postgres WITH PASSWORD 'databasepassword';" -U postgres
   - sequelize db:migrate
 script:  
   - npm run test:travis
