@@ -1,3 +1,4 @@
+/* eslint-disable import/no-dynamic-require */
 /* eslint-disable linebreak-style */
 /* eslint linebreak-style: ["error", "windows"] */
 const fs = require('fs');
