@@ -269,35 +269,6 @@ describe('Meals', () => {
         });
     });
   });
-  // describe('DELETE /meals', () => {
-  //   it('should throw error for wrong meal id', (done) => {
-  //     User.findOne({ where: { email: catererData.email } })
-  //       .then((caterer) => {
-  //         const { user_id, email, role_id } = caterer;
-  //         const mealId = -1;
-  //         const token = jwt.sign(
-  //           {
-  //             email,
-  //             user_id,
-  //             role_id,
-  //           },
-  //           'secret',
-  //           {
-  //             expiresIn: 86400,
-  //           },
-  //         );
-  //         chai.request(app)
-  //           .delete(`/api/v1/meals/${mealId}`)
-  //           .set('Authorization', `Bearer ${token}`)
-  //           .end((err, res) => {
-  //             res.should.have.status(404);
-  //             assert.equal(res.body.message, 'Meal Not Found');
-  //           });
-  //         done();
-  //       })
-  //       .catch(err => console.log(err.message));
-  //   });
-  // });
 });
 
 describe('Menu', () => {
@@ -422,7 +393,7 @@ describe('Orders', () => {
     });
   });
   describe('POST /orders', () => {
-    it('should get add an order to orders', (done) => {
+    it('should add an order to orders', (done) => {
       User.findOne({ where: { email: userData.email } })
         .then((user) => {
           const {

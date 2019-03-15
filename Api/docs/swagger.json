@@ -1,0 +1,707 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Meal Booking Application",
+    "version": "1.0.0",
+    "title": "mBookr"
+  },
+  "host": "mbookr.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "users",
+      "description": "Operations about users"
+    },
+    {
+      "name": "meals",
+      "description": "Operations about meals"
+    },
+    {
+      "name": "menu",
+      "description": "Operations about menu"
+    },
+    {
+      "name": "orders",
+      "description": "Operations about orders"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/users/signup": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Create user",
+        "description": "Two profiles can be created, customer with role_id of 1 and caterer with role_id of 2",
+        "operationId": "createUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters for creating user.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "User created successfully.",
+            "schema": {
+              "$ref": "#/definitions/Signup-Response"
+            }
+          },
+          "422": {
+            "description": "User already exists."
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "User logs into created account.",
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters required as credentials",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login-Model"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "schema": {
+              "$ref": "#/definitions/Login-Response"
+            }
+          },
+          "400": {
+            "description": "User doesn't exist"
+          },
+          "401": {
+            "description": "Authentication failed"
+          }
+        }
+      }
+    },
+    "/menu": {
+      "get": {
+        "tags": [
+          "menu"
+        ],
+        "summary": "Get menu",
+        "description": "Get menu for the day, doesn't require authentication to access.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Menu"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "menu"
+        ],
+        "summary": "Add meal to menu",
+        "description": "This can only be done by a logged in caterer",
+        "operationId": "updateUser",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "meal_id",
+            "description": "Meal id required to add meal to menu.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Meal-Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meal added successfully."
+          },
+          "404": {
+            "description": "Meal Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "menu"
+        ],
+        "summary": "Delete meal from menu",
+        "description": "This can only be done by a logged in caterer",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parametes required to delete meal from menu.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Delete-Meal"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meal deleted from menu successfully."
+          },
+          "404": {
+            "description": "Meal Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/menu/{menu_id}": {
+      "delete": {
+        "tags": [
+          "menu"
+        ],
+        "summary": "Delete menu",
+        "description": "This can only be done by a logged in caterer",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "menu_id",
+            "in": "path",
+            "description": "ID of the menu that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Menu deleted successfully."
+          },
+          "404": {
+            "description": "Menu Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/meals": {
+      "get": {
+        "tags": [
+          "meals"
+        ],
+        "summary": "Get all meals",
+        "description": "Only an authenticated caterer can perform this action.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "meals"
+        ],
+        "summary": "Add a meal to the system",
+        "description": "Only an authenticated caterer can perform this action.",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "The name of the meal."
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "string",
+            "required": true,
+            "description": "The price of the meal."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "string",
+            "required": true,
+            "description": "The image of the meal."
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Meal created successfully."
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/meals/{meal_id}": {
+      "put": {
+        "tags": [
+          "meals"
+        ],
+        "summary": "Edit meal",
+        "description": "This can only be done by a logged in caterer",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "meal_id",
+            "in": "path",
+            "description": "ID of the meal to be edited",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "New name of the meal."
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "type": "string",
+            "required": true,
+            "description": "New price of the meal."
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "string",
+            "required": true,
+            "description": "New image of the meal."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meal successfully updated."
+          },
+          "404": {
+            "description": "Meal Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "meals"
+        ],
+        "summary": "Delete meal",
+        "description": "This can only be done by a logged in caterer",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "meal_id",
+            "in": "path",
+            "description": "ID of the meal that needs to be deleted",
+            "required": true,
+            "type": "integer",
+            "minimum": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Meal deleted successfully."
+          },
+          "404": {
+            "description": "Meal Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/orders": {
+      "post": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Place an order for meals",
+        "description": "Only a logged in customer can perform this action",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters for placing an order",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order created successfully."
+          },
+          "401": {
+            "description": "User not authorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Get all orders in the system",
+        "description": "Any logged in user can perform this action",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "401": {
+            "description": "User not authorized"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/orders/{order_id}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Get a single order",
+        "description": "Any logged in user can perform this action",
+        "operationId": "getOrderById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "ID of order to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "401": {
+            "description": "User not authorized"
+          },
+          "404": {
+            "description": "Order doesn't exist"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/orders/customer/{customer_id}": {
+      "get": {
+        "tags": [
+          "orders"
+        ],
+        "summary": "Get all orders for a single customer",
+        "description": "Any logged in user can perform this action",
+        "operationId": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "customer_id",
+            "in": "path",
+            "description": "ID of customer whose orders are to be fetched",
+            "required": true,
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 1,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success"
+          },
+          "401": {
+            "description": "User not authorized"
+          },
+          "404": {
+            "description": "Customer hasn't made any order yet"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "user_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "user_name": {
+          "type": "string"
+        },
+        "user_phone": {
+          "type": "string"
+        },
+        "user_address": {
+          "type": "string"
+        },
+        "meals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "meal_id": {
+                "type": "integer"
+              },
+              "meal_name": {
+                "type": "string"
+              },
+              "meal_price": {
+                "type": "integer"
+              },
+              "meal_image": {
+                "type": "string"
+              },
+              "quantity": {
+                "type": "integer"
+              },
+              "meal_total": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "order_total": {
+          "type": "integer"
+        }
+      },
+      "xml": {
+        "name": "Order"
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phone_number": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "role_id": {
+          "type": "integer"
+        }
+      },
+      "xml": {
+        "name": "User"
+      }
+    },
+    "Meal-Id": {
+      "type": "object",
+      "properties": {
+        "meal_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Delete-Meal": {
+      "type": "object",
+      "properties": {
+        "menu_id": {
+          "type": "integer"
+        },
+        "meal_id": {
+          "type": "integer"
+        }
+      }
+    },
+    "Login-Model": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "example": "user@email.com"
+        },
+        "password": {
+          "example": "password"
+        }
+      }
+    },
+    "Signup-Response": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "example": "success"
+        },
+        "message": {
+          "example": "User created successfully."
+        }
+      }
+    },
+    "Login-Response": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "example": "Login successful"
+        },
+        "role_id": {
+          "example": 1
+        },
+        "token": {
+          "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+        }
+      }
+    },
+    "Menu": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "example": "success"
+        },
+        "date": {
+          "example": "08-03-2019"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "meal_id": {
+                "example": 1
+              },
+              "meal_name": {
+                "example": "meal name"
+              },
+              "meal_price": {
+                "example": "500"
+              },
+              "meal_image": {
+                "example": "test-image.png"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
