@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/uploads', express.static('uploads'));
+app.use('/docs', express.static('docs'));
 app.use('/api/v1/users', UserRoute);
 app.use('/api/v1/meals', MealsRoute);
 app.use('/api/v1/menu', MenuRoute);

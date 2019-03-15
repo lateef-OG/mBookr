@@ -6,7 +6,7 @@ const { Menu, Meal } = require('../models');
 
 const MenuController = {
   addMeal(req, res) {
-    const date = moment().format('DD-MM-YYYY');
+    const date = new Date();
     const menu_id = parseInt(moment().format('DDMMYYYY'), Number);
     return Meal
       .findById(req.body.meal_id)
@@ -36,8 +36,9 @@ const MenuController = {
   },
   fetchMenu(req, res) {
     const date = moment().format('DD-MM-YYYY');
+    const menu_id = parseInt(moment().format('DDMMYYYY'), Number);
     return Menu
-      .findAll({ where: { date } })
+      .findAll({ where: { menu_id } })
       .then(menu => res.status(200).json({
         message: 'Success',
         date,
